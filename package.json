@@ -9,6 +9,7 @@
   "author": "Ivan A. Flores",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.15.2",
     "gulp": "^3.9.1"
   }
 }
