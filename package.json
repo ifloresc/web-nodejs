@@ -2,7 +2,7 @@
   "name": "web-nodejs",
   "version": "0.1.0-SNAPSHOT",
   "description": "Projecto WEB",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
     "gulp": "^3.9.1"
   }
 }
