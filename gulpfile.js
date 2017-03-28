@@ -35,6 +35,7 @@ gulp.task('pug:prod', function() {
 	  .pipe($.pug())
 	  .pipe(gulp.dest('dist'))	
 });
+
 gulp.task('js', function() {
 	gulp.src('./src/**/*.js')
   		.pipe($.plumber())	
