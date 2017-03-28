@@ -4,39 +4,45 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var pug = require('gulp-pug');
 var uglify = require('gulp-uglify');
+var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('sass', function() {
 	return gulp.src('src/public/css/*.sass') // Leer un archivo
+  		.pipe(plumber())	
     	.pipe(sourcemaps.init())
-		.pipe(sass().on('error', sass.logError)) // Compilar SASS
+		.pipe(sass()) // Compilar SASS
         .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false})) // Autoprfixer
-        .pipe(sourcemaps.write())
 		.pipe(gulp.dest('.tmp')) // Guardar archivo
+        .pipe(sourcemaps.write())
 		.pipe(reload({ stream: true })); // Enviar cambios al navegador
 });
 
 gulp.task('pug', function() {
 	return gulp.src('src/public/*.pug')
+  		.pipe(plumber())	
 	  .pipe(pug())
 	  .pipe(gulp.dest('.tmp'))	
 });
 
 gulp.task('sass:prod', function() {
 	return gulp.src('src/public/css/*.sass') // Leer un archivo
-		.pipe(sass({ outputStyle: 'compressed'}).on('error', sass.logError)) // Compilar SASS
+  		.pipe(plumber())	
+		.pipe(sass({ outputStyle: 'compressed'})) // Compilar SASS
         .pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false})) // Autoprfixer
 		.pipe(gulp.dest('dist')); // Enviar cambios al navegador
 });
 
 gulp.task('pug:prod', function() {
 	return gulp.src('src/public/*.pug')
+  		.pipe(plumber())	
 	  .pipe(pug())
 	  .pipe(gulp.dest('dist'))	
 });
 gulp.task('js', function() {
 	gulp.src('./src/**/*.js')
+  		.pipe(plumber())	
 		.pipe(uglify({compress:true}))
 		.pipe(gulp.dest('dist'))
 });
