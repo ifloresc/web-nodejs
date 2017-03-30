@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 routes(app);
 
+// Errores en sitio
 app.use(function(req, res) {
 	res.status(404).render('error/404');
 });
@@ -32,6 +33,7 @@ app.listen(8000, function() {
 
 var hbs = exphbs.create({
 	defaultLayout: 'main',
+	extname: '.hbs',
 	helpers: {
 		list: function (elementos, options) {
 			if (!elementos) {
@@ -51,5 +53,5 @@ var hbs = exphbs.create({
 	}
 });
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.engine('.hbs', hbs.engine);
+app.set('view engine', '.hbs');
